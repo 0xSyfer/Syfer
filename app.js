@@ -10,7 +10,7 @@ const ICONS = {
 const SOCIALS = [
   { key: 'tg', name: 'Telegram', sub: '@Syferski',      url: 'https://t.me/syferski' },
   { key: 'x',  name: 'Twitter',  sub: '@0xSyfer',       url: 'https://x.com/0xSyfer' },
-  { key: 'gh', name: 'GitHub',   sub: 'IDONTSHOWSYFER', url: 'https://github.com/IDONTSHOWSYFER' }
+  { key: 'gh', name: 'GitHub',   sub: '0xSyfer', url: 'https://github.com/0xSyfer' }
 ];
 
 const TRADING = [
