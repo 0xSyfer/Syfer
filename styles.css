@@ -36,6 +36,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   text-transform:uppercase;color:var(--muted)}
 .status .dot{width:7px;height:7px;border-radius:50%;background:var(--ink);animation:pulse 2.6s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(11,11,13,.28)}70%{box-shadow:0 0 0 7px rgba(11,11,13,0)}100%{box-shadow:0 0 0 0 rgba(11,11,13,0)}}
+.soc{display:flex;align-items:center;gap:2px}
+.soc a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;
+  color:var(--muted);transition:.2s ease}
+.soc a:hover{color:var(--ink);background:rgba(11,11,13,.05)}
+.soc a:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
+.soc svg{width:18px;height:18px}
 
 main{max-width:600px;margin:0 auto;
   padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
@@ -86,9 +92,98 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 0 40px;
 
 .copy-helper{position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none}
 
+/* CTA effects (shared): buzz = short vibration every few seconds, shine = light sweep, ring = pulsing halo */
+.buzz{animation:buzz 4.2s ease-in-out 1.2s infinite}
+.buzz:hover,.buzz:focus-visible{animation:none}
+@keyframes buzz{
+  0%,84%,100%{transform:translate3d(0,0,0) rotate(0)}
+  86%{transform:translate3d(-2px,0,0) rotate(-2.5deg)}
+  88%{transform:translate3d(2px,0,0) rotate(2.5deg)}
+  90%{transform:translate3d(-2px,0,0) rotate(-2deg)}
+  92%{transform:translate3d(2px,0,0) rotate(2deg)}
+  94%{transform:translate3d(-1px,0,0) rotate(-1deg)}
+  96%{transform:translate3d(1px,0,0) rotate(.5deg)}
+}
+.shine{position:relative;overflow:hidden;isolation:isolate}
+.shine::after{content:"";position:absolute;top:-10%;bottom:-10%;left:-60%;width:42%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,var(--shine,rgba(255,255,255,.42)),transparent);
+  transform:skewX(-18deg);animation:shine 3.8s ease-in-out infinite}
+@keyframes shine{0%,52%{transform:skewX(-18deg) translateX(0)}82%,100%{transform:skewX(-18deg) translateX(460%)}}
+.ring{--ring:rgba(11,11,13,.32)}
+.ring:not(:hover){box-shadow:0 0 0 0 var(--ring);animation:ring 2.6s ease-out infinite}
+.ring.buzz:not(:hover){animation:buzz 4.2s ease-in-out 1.2s infinite,ring 2.6s ease-out infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 var(--ring)}70%,100%{box-shadow:0 0 0 14px transparent}}
+
+.grid.two{grid-template-columns:repeat(2,1fr)}
+
+/* Home: promo pill + featured product card (links to the /ai sales page) */
+.promo{display:inline-flex;align-items:center;gap:10px;margin:0 auto 22px;padding:5px 14px 5px 5px;border:1px solid var(--line2);
+  border-radius:999px;background:#fff;font-size:13px;font-weight:600;color:var(--ink);--shine:rgba(11,11,13,.1);
+  box-shadow:0 8px 22px -16px rgba(11,11,13,.45);transition:.22s ease}
+.promo .new{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:#fff;background:var(--ink);border-radius:999px;padding:4px 9px}
+.promo .a{transition:transform .25s}
+.promo:hover{border-color:var(--ink);transform:translateY(-1px)}
+.promo:hover .a{transform:translateX(3px)}
+
+.feature{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:24px;
+  padding:24px 24px 24px 30px;border-radius:18px;background:var(--ink);color:#fff;
+  box-shadow:0 26px 50px -30px rgba(11,11,13,.75);transition:transform .25s ease,box-shadow .25s ease}
+.feature:hover{transform:translateY(-3px);box-shadow:0 34px 60px -30px rgba(11,11,13,.85)}
+.feature::before{content:"";position:absolute;z-index:-2;left:50%;top:50%;width:max(220%,700px);aspect-ratio:1;translate:-50% -50%;
+  background:conic-gradient(from 0deg,transparent 0deg 200deg,rgba(255,255,255,.35) 270deg,#fff 330deg,transparent 360deg);
+  animation:fspin 5.5s linear infinite}
+.feature::after{content:"";position:absolute;z-index:-1;inset:2px;border-radius:16px;
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.06) 1px,transparent 0) 0 0/18px 18px,
+    radial-gradient(120% 90% at 0% 0%,#26262d,#0b0b0d 60%)}
+@keyframes fspin{to{transform:rotate(1turn)}}
+
+.fbook{perspective:700px;display:block}
+.fb-3d{display:block;width:92px;height:124px;transform:rotateY(-24deg) rotateX(6deg);animation:ffloat 5s ease-in-out infinite;
+  border-radius:3px 8px 8px 3px;box-shadow:3px 3px 0 #d9d9de,6px 6px 0 #a9a9b0,0 22px 30px -12px rgba(0,0,0,.8)}
+@keyframes ffloat{0%,100%{translate:0 0}50%{translate:0 -6px}}
+.fb-cover{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;width:100%;height:100%;
+  padding:10px 9px 9px;border-radius:3px 8px 8px 3px;border:1px solid rgba(255,255,255,.14);
+  background:linear-gradient(90deg,rgba(255,255,255,.1) 0 2px,rgba(0,0,0,.35) 2px 5px,transparent 5px),radial-gradient(120% 90% at 80% 0%,#33333b,#121216 62%)}
+.fb-cover::after{content:"";position:absolute;inset:-20% -60%;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.22) 50%,transparent 58%);
+  animation:fgloss 5s ease-in-out infinite}
+@keyframes fgloss{0%,40%{transform:translateX(-45%)}75%,100%{transform:translateX(45%)}}
+.fb-cover .k,.fb-cover .by{font-family:var(--mono);font-size:6.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.fb-cover .t{font-family:var(--disp);font-weight:700;font-size:19px;line-height:.9;letter-spacing:-.04em;text-transform:uppercase}
+
+.ftext{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0}
+.ftext .tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.ftext .live{width:6px;height:6px;border-radius:50%;background:#fff;animation:fpulse 2.4s infinite}
+@keyframes fpulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.45)}70%{box-shadow:0 0 0 7px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+.ftext b{font-family:var(--disp);font-size:26px;line-height:1.05;letter-spacing:-.03em;color:#fff}
+.ftext .d{font-size:14px;line-height:1.5;color:rgba(255,255,255,.68);max-width:36ch}
+.ftext .btn{margin-top:8px}
+.btn.invert{background:#fff;color:var(--ink);border-color:#fff;--shine:rgba(11,11,13,.14)}
+.feature:hover .btn .a{transform:translateX(3px)}
+
+@media(max-width:420px){
+  .feature{grid-template-columns:1fr;justify-items:center;text-align:center;gap:20px;padding:28px 20px 24px}
+  .ftext{align-items:center}
+  .promo{font-size:12px;gap:8px;padding-right:12px}
+}
+@media(max-width:360px){.promo .opt{display:none}}
+
+@media(max-width:640px){
+  .bar{gap:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .status{display:none}
+  .soc{gap:0}
+  .soc a{width:32px;height:32px}
+}
+@media(max-width:360px){
+  .bar{gap:6px}
+  .soc a{width:30px;height:30px}
+  .bar .btn.sm{padding:9px 12px}
+  .bar .btn .a{display:none}
+}
+
 @media(max-width:620px){.grid{grid-template-columns:1fr 1fr}}
-@media(max-width:400px){.grid{grid-template-columns:1fr}}
+@media(max-width:400px){.grid,.grid.two{grid-template-columns:1fr}}
 
 @media(prefers-reduced-motion:reduce){
-  *,*::before{animation:none!important;transition:none!important}
+  *,*::before,*::after{animation:none!important;transition:none!important}
 }

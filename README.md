@@ -7,6 +7,10 @@ Personal link page. Static site, no build step, no dependencies to install.
 | File | Responsibility |
 |------|----------------|
 | `index.html` | Markup only (structure + content) |
+| `ai/index.html` | "Learn AI" sales page (e-book + private community), served at `syfer.fun/ai`. **The checkout link is the `#checkout` button href**: Stripe Payment Link for product `prod_VgJvzCxhBrCzj3`, €29 (one place to change) |
+| `ai/ai.css`, `ai/ai.js` | Styles and animations of the sales page (reveal on scroll, typewriter, 3D e-book, mobile sticky CTA) |
+| `ai/welcome/` | Post-payment page (Stripe redirects here after checkout): e-book download + community invite. Not linked anywhere, `noindex` |
+| `ai/og.png` | 1200×630 link-preview image shown when `syfer.fun/ai` is shared on X, Instagram, Telegram… |
 | `styles.css` | All styling |
 | `app.js` | Renders the Socials / Trading cards and the copy-code button |
 | `face.webp` | Avatar + favicon |
