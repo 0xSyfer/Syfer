@@ -183,6 +183,7 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 0 40px;
   .status{display:none}
   .soc{gap:0}
   .soc a{width:32px;height:32px}
+  .soc a.m-hide{display:none}
 }
 @media(max-width:360px){
   .bar{gap:6px}
