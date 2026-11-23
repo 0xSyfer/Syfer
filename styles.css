@@ -168,6 +168,16 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 0 40px;
 }
 @media(max-width:360px){.promo .opt{display:none}}
 
+/* Home hero: keep both CTAs side by side on phones */
+@media(max-width:520px){
+  .hero .cta{flex-wrap:nowrap;gap:10px}
+  .hero .cta .btn{padding:13px 16px;font-size:14px;gap:7px}
+}
+@media(max-width:360px){
+  .hero .cta{gap:8px}
+  .hero .cta .btn{padding:12px 12px;font-size:13px;gap:6px}
+}
+
 @media(max-width:640px){
   .bar{gap:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
   .status{display:none}
