@@ -15,6 +15,8 @@ Personal link page. Static site, no build step, no dependencies to install.
 | `app.js` | Renders the Socials / Trading cards and the copy-code button |
 | `face.webp` | Avatar + favicon |
 
+**Cache busting:** CSS/JS are loaded with `?v=N` (e.g. `styles.css?v=7`). After changing a CSS or JS file, bump `N` in the HTML files so phones load the new version.
+
 Edit the links in `app.js` (`SOCIALS`, `TRADING`, `REFERRAL_CODE`) — no other file needs to change for new links.
 
 ## Run locally
