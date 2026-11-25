@@ -16,7 +16,7 @@ const SOCIALS = [
   // { key: 'ig', name: 'Instagram', sub: '@0xSyfer',      url: 'https://www.instagram.com/0xsyfer/' },
   // { key: 'tt', name: 'TikTok',   sub: '@0xSyfer',       url: 'https://www.tiktok.com/@0xsyfer' },
   // { key: 'th', name: 'Threads',  sub: '@0xSyfer',       url: 'https://www.threads.com/@0xsyfer', mHide: true },
-  { key: 'gh', name: 'GitHub',   sub: '0xSyfer', url: 'https://github.com/0xSyfer', mHide: true }
+  { key: 'gh', name: 'GitHub',   sub: '0xSyfer', url: 'https://github.com/0xSyfer' }
 ];
 // mHide: icon hidden in the header on phones (still listed in the Socials section).
 
